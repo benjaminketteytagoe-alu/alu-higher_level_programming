@@ -85,8 +85,10 @@ class SinglyLinkedList:
 
         # Traverse the list to find insertion point
         current = self.__head
-        while (current.next_node is not None and
-               current.next_node.data < value):
+        while (
+            current.next_node is not None
+            and current.next_node.data < value
+        ):
             current = current.next_node
 
         # Insert new node
