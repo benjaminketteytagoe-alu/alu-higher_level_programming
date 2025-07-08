@@ -9,6 +9,7 @@ a singly linked list data structure.
   sorted insertion of nodes and printing the list.
 """
 
+
 class Node:
     """Node of a singly linked list."""
 
@@ -17,7 +18,8 @@ class Node:
 
         Args:
             data (int): The data value of the node.
-            next_node (Node, optional): Reference to the next node. Defaults to None.
+            next_node (Node, optional): Reference to the next node.
+                Defaults to None.
 
         Raises:
             TypeError: If data is not an integer.
@@ -83,7 +85,8 @@ class SinglyLinkedList:
 
         # Traverse the list to find insertion point
         current = self.__head
-        while current.next_node is not None and current.next_node.data < value:
+        while (current.next_node is not None and
+               current.next_node.data < value):
             current = current.next_node
 
         # Insert new node
