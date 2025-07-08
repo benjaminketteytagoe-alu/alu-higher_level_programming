@@ -106,3 +106,4 @@ class Square:
 
         return "\n".join(lines)
 
+
