@@ -6,30 +6,20 @@ Module that defines the MyInt class
 
 class MyInt(int):
     """
-    MyInt is a rebel class that inherits from int.
-    It has == and != operators inverted.
+    MyInt is a rebel class that inherits from int
+    with inverted == and != operators
     """
-    
+
     def __eq__(self, other):
         """
-        Override equality operator to return the opposite of normal behavior
-        
-        Args:
-            other: The object to compare with
-            
-        Returns:
-            bool: The inverted result of normal equality comparison
+        Inverted equality operator
+        Returns False when values are equal
         """
         return super().__ne__(other)
-    
+
     def __ne__(self, other):
         """
-        Override inequality operator to return the opposite of normal behavior
-        
-        Args:
-            other: The object to compare with
-            
-        Returns:
-            bool: The inverted result of normal inequality comparison
+        Inverted inequality operator
+        Returns True when values are equal
         """
         return super().__eq__(other)
