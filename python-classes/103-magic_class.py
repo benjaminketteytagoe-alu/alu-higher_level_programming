@@ -1,36 +1,46 @@
 #!/usr/bin/python3
 """
-Defines a MagicClass that mimics the behavior described
-by the given Python bytecode for radius validation,
-area calculation, and circumference.
+MagicClass that replicates the given bytecode behavior.
+This class represents a circle with radius validation.
 """
 
 import math
 
 
 class MagicClass:
-    """A class that represents a circle with radius,
-    providing methods to calculate area and circumference."""
-
+    """A class that represents a circle with radius validation."""
+    
     def __init__(self, radius=0):
-        """Initialize the MagicClass with a given radius.
-
+        """
+        Initialize MagicClass with a radius.
+        
         Args:
-            radius (int or float): The radius of the circle.
-
+            radius: The radius of the circle (must be int or float)
+            
         Raises:
-            TypeError: If radius is not a number.
+            TypeError: If radius is not a number (int or float)
         """
         self.__radius = 0
+        
         if type(radius) is not int and type(radius) is not float:
-            raise TypeError("radius must be a number")
+            raise TypeError('radius must be a number')
+        
         self.__radius = radius
-
+    
     def area(self):
-        """Return the area of the circle."""
+        """
+        Calculate the area of the circle.
+        
+        Returns:
+            float: The area of the circle (π × radius²)
+        """
         return self.__radius ** 2 * math.pi
-
+    
     def circumference(self):
-        """Return the circumference of the circle."""
+        """
+        Calculate the circumference of the circle.
+        
+        Returns:
+            float: The circumference of the circle (2 × π × radius)
+        """
         return 2 * math.pi * self.__radius
-
