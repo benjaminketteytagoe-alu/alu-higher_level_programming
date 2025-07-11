@@ -23,17 +23,17 @@ def is_safe(board, row, col):
     for i in range(row):
         if board[i] == col:
             return False
-    
+
     # Check upper diagonal on left side
     for i in range(row):
         if board[i] == col - (row - i):
             return False
-    
+
     # Check upper diagonal on right side
     for i in range(row):
         if board[i] == col + (row - i):
             return False
-    
+
     return True
 
 
@@ -54,7 +54,7 @@ def solve_nqueens(n, board, row, solutions):
             solution.append([i, board[i]])
         solutions.append(solution)
         return
-    
+
     # Try placing queen in each column of current row
     for col in range(n):
         if is_safe(board, row, col):
@@ -68,7 +68,7 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
-    
+
     # Check if N is a valid integer
     try:
         n = int(sys.argv[1])
