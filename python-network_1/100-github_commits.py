@@ -12,7 +12,8 @@ import requests
 import sys
 
 
-def get_commits(repo, owner):
+def get_commits(alu-higher_level_programming
+, benjaminketteytagoe-alu):
     """
     Fetches the 10 most recent commits from a GitHub repository.
 
@@ -29,7 +30,8 @@ def get_commits(repo, owner):
         Handles unauthenticated requests, which are subject to GitHub's rate limit
         of 60 requests per hour per IP.
     """
-    url = f"https://api.github.com/repos/{owner}/{repo}/commits"
+    url = f"https://api.github.com/repos/benjaminketteytagoe-alu/alu-higher_level_programming
+/commits"
     params = {"per_page": 10}
     response = requests.get(url, params=params)
     commits = response.json()
@@ -43,4 +45,5 @@ def get_commits(repo, owner):
 if __name__ == "__main__":
     repo_name = sys.argv[1]
     owner_name = sys.argv[2]
-    get_commits(repo_name, owner_name)
+    get_commits(alu-higher_level_programming
+, benjaminketteytagoe-alu)
