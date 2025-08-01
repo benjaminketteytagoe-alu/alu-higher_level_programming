@@ -23,6 +23,64 @@ array([[13, 16]])
 >>> lazy_matrix_mul([[1.5, 2.5]], [[2.0], [3.0]])
 array([[10.5]])
 
+# Test ValueError for non-list inputs (NumPy converts many types)
+>>> lazy_matrix_mul("not a list", [[1, 2]])
+Traceback (most recent call last):
+ValueError: Scalar operands are not allowed, use '*' instead
+
+>>> lazy_matrix_mul([[1, 2]], "not a list")
+Traceback (most recent call last):
+ValueError: Scalar operands are not allowed, use '*' instead
+
+# Test ValueError for non-list of lists
+>>> lazy_matrix_mul([1, 2, 3], [[1, 2]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
+
+>>> lazy_matrix_mul([[1, 2]], [1, 2, 3])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 0 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
+
+# Test ValueError for empty matrices
+>>> lazy_matrix_mul([], [[1, 2]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, requires at least 1)
+
+>>> lazy_matrix_mul([[]], [[1, 2]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 0 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 0)
+
+>>> lazy_matrix_mul([[1, 2]], [])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, requires at least 1)
+
+>>> lazy_matrix_mul([[1, 2]], [[]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 0)
+
+# Test ValueError for non-numeric elements
+>>> lazy_matrix_mul([[1, "string"]], [[1], [2]])
+Traceback (most recent call last):
+ValueError: could not convert string to float: string
+
+>>> lazy_matrix_mul([[1, 2]], [[1], ["string"]])
+Traceback (most recent call last):
+ValueError: could not convert string to float: string
+
+# Test ValueError for non-rectangular matrices
+>>> lazy_matrix_mul([[1, 2], [3, 4, 5]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+>>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4, 5]])
+Traceback (most recent call last):
+ValueError: setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.
+
+# Test ValueError for incompatible matrix dimensions
+>>> lazy_matrix_mul([[1, 2, 3]], [[1, 2], [3, 4]])
+Traceback (most recent call last):
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 2 is different from 3)
+
 # Test with different valid dimensions
 >>> lazy_matrix_mul([[1, 2, 3]], [[1], [2], [3]])
 array([[14]])
