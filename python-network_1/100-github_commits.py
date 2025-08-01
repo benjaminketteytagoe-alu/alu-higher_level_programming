@@ -1,19 +1,20 @@
 #!/usr/bin/python3
-"""
-Module 100-github_commits.py
-"""
+"""Script that lists 10 commits from a GitHub repository using the GitHub API"""
 
-
-from sys import argv
 import requests
-
+import sys
 
 if __name__ == "__main__":
-    url = 'https://api.github.com/repos/{}/{}/commits'.format(
-            argv[2], argv[1])
-    resp = requests.get(url)
-    data = resp.json()
-    for commit in data[0:10]:
-        print(commit.get('sha'), end=': ')
-        print(commit.get('commit').get('author').get('name'))
-
+    repo_name = sys.argv[1]
+    owner_name = sys.argv[2]
+    
+    url = f"https://api.github.com/repos/{owner_name}/{repo_name}/commits"
+    params = {"per_page": 10}
+    
+    response = requests.get(url, params=params)
+    commits = response.json()
+    
+    for commit in commits:
+        sha = commit["sha"]
+        author_name = commit["commit"]["author"]["name"]
+        print(f"{sha}: {author_name}")
