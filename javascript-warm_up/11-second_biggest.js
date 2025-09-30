@@ -1,9 +1,10 @@
 #!/usr/bin/node
-const args = process.argv.slice(2).map(Number); // Convert all arguments to integers
+const args = process.argv.slice(2);
 
 if (args.length <= 1) {
-	  console.log(0); // Print 0 if no arguments or only one argument
+  console.log(0);
 } else {
-	  const secondBiggest = args.sort((a, b) => b - a)[1];
-	  console.log(secondBiggest);
+  const numbers = args.map(arg => parseInt(arg));
+  numbers.sort((a, b) => b - a);
+  console.log(numbers[1]);
 }
