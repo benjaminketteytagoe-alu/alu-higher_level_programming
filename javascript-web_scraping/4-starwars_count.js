@@ -16,10 +16,10 @@ request(apiUrl, (error, response, body) => {
   } else {
     // Parse the JSON response
     const data = JSON.parse(body);
-    
+
     // Count movies where Wedge Antilles appears
     let count = 0;
-    
+
     // Iterate through all films
     data.results.forEach((film) => {
       // Check if character ID 18 is in the characters array
@@ -29,7 +29,7 @@ request(apiUrl, (error, response, body) => {
         }
       });
     });
-    
+
     // Print the count
     console.log(count);
   }
